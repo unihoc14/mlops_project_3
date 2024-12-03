@@ -281,7 +281,7 @@ def main():
 
 
     #log the model
-    experiment.log_model("model", "C:/Users/Jonas Bürge/OneDrive - Hochschule Luzern/Semester 6-DESKTOP-O2K42M2/MLOPS/project_3/models/test_model_1.h5")
+    experiment.log_model("model", "C:/Users/Jonas Bürge/Documents/mlops_repository/models/test_model_1.h5")
 
 if __name__ == "__main__":
     main()

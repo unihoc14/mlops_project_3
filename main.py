@@ -276,12 +276,13 @@ def main():
         datamodule = dm
     )
 
+    name_model = input("Give a name under which the model will be saved: ")
 
     #log the model
     log_model(
         comet_logger.experiment,
         model=model,
-        model_name = "Test model 1"
+        model_name = name_model
     )
 
 if __name__ == "__main__":

@@ -1,5 +1,4 @@
 import argparse
-from comet_ml import start
 from comet_ml.integration.pytorch import log_model
 from pytorch_lightning.loggers import CometLogger
 from datetime import datetime
@@ -207,20 +206,14 @@ def parse_args():
     parser.add_argument('--batch_size', type=int, required=True, help='Batch size')
     return parser.parse_args()
 
-experiment = start(
-        api_key = "jaPXzBJ6DvoAVGyR0yNQPWcD0",
-        project_name = "mlops_project_3",
-        workspace = "unihoc14"
-    )
-
 
 def main():
-    
     
     comet_logger = CometLogger(
         api_key="jaPXzBJ6DvoAVGyR0yNQPWcD0",
         project_name="mlops_project_3",
         workspace="unihoc14"
+        experiment_name = "first_test"
         )
 
     # Define hyperparameters
@@ -238,7 +231,7 @@ def main():
     }
 
     # Log hyperparameters
-    experiment.log_parameters(hyperparams)
+    comet_logger.log_parameters(hyperparams)
     L.seed_everything(42)
 
     dm = GLUEDataModule(
@@ -281,7 +274,11 @@ def main():
 
 
     #log the model
-    experiment.log_model("model", "C:/Users/Jonas Bürge/Documents/mlops_repository/models/test_model_1.h5")
+    log_model(
+        comet_logger.experiment,
+        model=model,
+        model_name = "Test model 1"
+    )
 
 if __name__ == "__main__":
     main()

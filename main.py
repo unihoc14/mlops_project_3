@@ -208,12 +208,16 @@ def parse_args():
 
 
 def main():
+
+    #ask for the name of the run
+    run_name = input("Please enter the name for this run: ")
+
     
     comet_logger = CometLogger(
         api_key="jaPXzBJ6DvoAVGyR0yNQPWcD0",
         project_name="mlops_project_3",
-        workspace="unihoc14"
-        experiment_name = "first_test"
+        workspace="unihoc14",
+        experiment_name = run_name
         )
 
     # Define hyperparameters
@@ -231,7 +235,7 @@ def main():
     }
 
     # Log hyperparameters
-    comet_logger.log_parameters(hyperparams)
+    comet_logger.experiment.log_parameters(hyperparams)
     L.seed_everything(42)
 
     dm = GLUEDataModule(

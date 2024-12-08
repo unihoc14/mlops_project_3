@@ -211,6 +211,7 @@ def main():
 
     #ask for the name of the run
     run_name = input("Please enter the name for this run: ")
+    name_model = input("Give a name under which the model will be saved: ")
 
     
     comet_logger = CometLogger(
@@ -275,8 +276,6 @@ def main():
         model,
         datamodule = dm
     )
-
-    name_model = input("Give a name under which the model will be saved: ")
 
     #log the model
     log_model(
